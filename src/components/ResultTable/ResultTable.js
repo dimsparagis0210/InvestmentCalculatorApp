@@ -15,7 +15,9 @@ const ResultTable = props => {
             </thead>
             <tbody>
             {props.data.map(yearData => (
-                <TableRow yearData={yearData} initialInvestment={props.initialInvestment}/>
+                <TableRow yearData={yearData}
+                          initialInvestment={props.initialInvestment}
+                />
             ))}
             </tbody>
         </table>

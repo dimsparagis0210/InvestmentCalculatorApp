@@ -1,6 +1,7 @@
 import styles from './UserInput.module.css';
-import { useState } from "react";
+import {useState} from "react";
 
+// Initial state
 const initialUserInput = {
     'current-savings': 10000,
     'yearly-contribution': 1200,
@@ -8,19 +9,22 @@ const initialUserInput = {
     'duration': 10
 };
 
-
 // We use props to lift the state up(in the App component)
 const UserInput = (props) => {
     const [userInput, setUserInput] = useState(initialUserInput);
+
+    //Handler for the form submission
     const submitHandler = event => {
         event.preventDefault(); //doesn't restart the page and the application
-        props.onCalculate(userInput);
+        props.onCalculate(userInput); //lifting the state up
     };
 
+    // Handler for the form reset
     const resetHandler = event => {
         setUserInput(initialUserInput);
     };
 
+    // Managing the state of the inputs
     const inputChangeHandler = (input, value) => {
         setUserInput((prevInput) => {
             return {

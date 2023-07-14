@@ -1,5 +1,6 @@
 import styles from './ResultTable.module.css';
 
+// Formatter for the table data
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',

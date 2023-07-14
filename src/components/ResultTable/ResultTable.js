@@ -1,12 +1,5 @@
 import styles from './ResultTable.module.css';
-
-// Formatter for the table data
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-});
+import TableRow from "./TableRow/TableRow";
 
 const ResultTable = props => {
     return (
@@ -22,13 +15,7 @@ const ResultTable = props => {
             </thead>
             <tbody>
             {props.data.map(yearData => (
-                <tr key={yearData.year}>
-                    <td>{yearData.year}</td>
-                    <td>{formatter.format(yearData.savingsEndOfYear)}</td>
-                    <td>{formatter.format(yearData.yearlyInterest)}</td>
-                    <td>{formatter.format(yearData.savingsEndOfYear - props.initialInvestment - yearData.yearlyInterest * yearData.year)}</td>
-                    <td>{formatter.format(props.initialInvestment + yearData.yearlyInterest * yearData.year)}</td>
-                </tr>
+                <TableRow yearData={yearData} initialInvestment={props.initialInvestment}/>
             ))}
             </tbody>
         </table>

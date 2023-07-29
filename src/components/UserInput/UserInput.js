@@ -1,5 +1,6 @@
 import styles from './UserInput.module.css';
 import {useState} from "react";
+import Button from '@mui/material/Button/Button'
 
 // Initial state
 const initialUserInput = {
@@ -83,12 +84,12 @@ const UserInput = (props) => {
                 </p>
             </div>
             <p className={styles.actions}>
-                <button onSubmit={resetHandler} type="reset" className={styles.buttonAlt}>
+                <Button onSubmit={resetHandler} type="reset" className={styles.buttonAlt} style={{color: 'white'}}>
                     Reset
-                </button>
-                <button type="submit" className={styles.button}>
+                </Button>
+                <Button type="submit" className={styles.button} style={{color: 'white'}}>
                     Calculate
-                </button>
+                </Button>
             </p>
         </form>
     );

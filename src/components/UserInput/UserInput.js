@@ -1,5 +1,5 @@
 import styles from './UserInput.module.css';
-import {useState} from "react";
+import { useState } from "react";
 import Button from '@mui/material/Button/Button'
 
 // Initial state
@@ -13,6 +13,16 @@ const initialUserInput = {
 // We use props to lift the state up(in the App component)
 const UserInput = (props) => {
     const [userInput, setUserInput] = useState(initialUserInput);
+    const [editingData, setEditingData] = useState(false);
+
+    const startEditingHandler = () => {
+        setEditingData(true);
+    }
+
+    const stopEditingHandler = () => {
+        setEditingData(false);
+        console.log('Working');
+    }
 
     //Handler for the form submission
     const submitHandler = event => {
@@ -36,62 +46,70 @@ const UserInput = (props) => {
     };
 
     return (
-        <form onSubmit={submitHandler} className={styles.form}>
-            <div className={styles.inputGroup}>
-                <p>
-                    <label htmlFor="current-savings">Current Savings ($)</label>
-                    <input
-                        onChange={(event) =>
-                            inputChangeHandler('current-savings', event.target.value)}
-                        type="number"
-                        id="current-savings"
-                        value={userInput['current-savings']}
-                    />
+        <div>
+            {editingData && <form onSubmit={submitHandler} className={styles.form}>
+                <div className={styles.inputGroup}>
+                    <p>
+                        <label htmlFor="current-savings">Current Savings ($)</label>
+                        <input
+                            onChange={(event) =>
+                                inputChangeHandler('current-savings', event.target.value)}
+                            type="number"
+                            id="current-savings"
+                            value={userInput['current-savings']}
+                        />
+                    </p>
+                    <p>
+                        <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
+                        <input
+                            onChange={(event) =>
+                                inputChangeHandler('yearly-contribution', event.target.value)}
+                            type="number"
+                            id="yearly-contribution"
+                            value={userInput['yearly-contribution']}
+                        />
+                    </p>
+                </div>
+                <div className={styles.inputGroup}>
+                    <p>
+                        <label htmlFor="expected-return">
+                            Expected Interest (%, per year)
+                        </label>
+                        <input
+                            onChange={(event) =>
+                                inputChangeHandler('expected-return', event.target.value)}
+                            type="number"
+                            id="expected-return"
+                            value={userInput['expected-return']}
+                        />
+                    </p>
+                    <p>
+                        <label htmlFor="duration">Investment Duration (years)</label>
+                        <input
+                            onChange={(event) =>
+                                inputChangeHandler('duration', event.target.value)}
+                            type="number"
+                            id="duration"
+                            value={userInput['duration']}
+                        />
+                    </p>
+                </div>
+                <p className={styles.actions}>
+                    <Button onSubmit={resetHandler} type="reset" className={styles.buttonAlt} style={{color: 'white'}}>
+                        Reset
+                    </Button>
+                    <Button type="submit" className={styles.button} style={{color: 'white'}}>
+                        Calculate
+                    </Button>
+                    <Button className={styles.buttonCancel} style={{color: 'white'}} onClick={stopEditingHandler}>Close</Button>
                 </p>
-                <p>
-                    <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-                    <input
-                        onChange={(event) =>
-                            inputChangeHandler('yearly-contribution', event.target.value)}
-                        type="number"
-                        id="yearly-contribution"
-                        value={userInput['yearly-contribution']}
-                    />
-                </p>
-            </div>
-            <div className={styles.inputGroup}>
-                <p>
-                    <label htmlFor="expected-return">
-                        Expected Interest (%, per year)
-                    </label>
-                    <input
-                        onChange={(event) =>
-                            inputChangeHandler('expected-return', event.target.value)}
-                        type="number"
-                        id="expected-return"
-                        value={userInput['expected-return']}
-                    />
-                </p>
-                <p>
-                    <label htmlFor="duration">Investment Duration (years)</label>
-                    <input
-                        onChange={(event) =>
-                            inputChangeHandler('duration', event.target.value)}
-                        type="number"
-                        id="duration"
-                        value={userInput['duration']}
-                    />
-                </p>
-            </div>
-            <p className={styles.actions}>
-                <Button onSubmit={resetHandler} type="reset" className={styles.buttonAlt} style={{color: 'white'}}>
-                    Reset
-                </Button>
-                <Button type="submit" className={styles.button} style={{color: 'white'}}>
-                    Calculate
-                </Button>
-            </p>
-        </form>
+            </form>
+            }
+            {!editingData &&
+                <div className={styles.notEditingContainer}>
+                    <Button className={styles.buttonCalculate} onClick={startEditingHandler} style={{color: 'white'}}>Calculate</Button>
+                </div>}
+        </div>
     );
 }
 

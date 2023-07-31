@@ -13,7 +13,7 @@ const initialUserInput = {
 // We use props to lift the state up(in the App component)
 const UserInput = (props) => {
     const [userInput, setUserInput] = useState(initialUserInput);
-    const [editingData, setEditingData] = useState(false);
+    const [editingData, setEditingData] = useState(true);
 
     const startEditingHandler = () => {
         setEditingData(true);

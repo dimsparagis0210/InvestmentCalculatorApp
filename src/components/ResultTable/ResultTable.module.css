@@ -5,6 +5,8 @@
     table-layout: fixed;
     border-spacing: 1rem;
     text-align: right;
+    box-shadow: 0 10px 8px rgba(0,0,0,0.25);
+    border-radius:10px;
 }
 
 .result thead {

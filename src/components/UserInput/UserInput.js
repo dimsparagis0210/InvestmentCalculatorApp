@@ -47,7 +47,7 @@ const UserInput = (props) => {
 
     return (
         <div>
-            {editingData && <form onSubmit={submitHandler} className={styles.form}>
+            {editingData && <form onSubmit={submitHandler} className={styles.form + ' ' + styles.openFormAnimation}>
                 <div className={styles.inputGroup}>
                     <p>
                         <label htmlFor="current-savings">Current Savings ($)</label>
@@ -106,9 +106,9 @@ const UserInput = (props) => {
             </form>
             }
             {!editingData &&
-                <div className={styles.notEditingContainer}>
+                <form className={styles.form + ' ' + styles.notEditingContainer}>
                     <Button className={styles.buttonCalculate} onClick={startEditingHandler} style={{color: 'white'}}>Calculate</Button>
-                </div>}
+                </form>}
         </div>
     );
 }

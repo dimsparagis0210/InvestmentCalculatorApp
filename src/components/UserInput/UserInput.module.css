@@ -76,15 +76,15 @@
 }
 
 .notEditingContainer {
-    padding:1rem;
-    max-width: 30rem;
-    margin:8rem auto;
-    border-radius: 4px;
-    background: linear-gradient(180deg, #307e6c, #2b996d);
     display:flex;
     justify-content:center;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-name: closeForm;
+}
+
+.openFormAnimation{
+    animation-duration: 1s;
+    animation-name: openForm;
 }
 
 .buttonCalculate {
@@ -99,11 +99,22 @@
 
 @keyframes closeForm {
     from {
-        padding: 3rem;
+        padding: 7rem;
     }
 
     to {
         padding:1rem;
     }
 }
+
+@keyframes openForm {
+    from {
+        padding: 0.1rem;
+    }
+
+    to {
+        padding: 1rem;
+    }
+}
+
 
